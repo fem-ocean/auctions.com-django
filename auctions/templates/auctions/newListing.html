@@ -1,0 +1,68 @@
+{% extends 'auctions/layout.html' %}
+
+{% block title %}New Listing{% endblock %}
+{% block body %}
+    
+    <form class="container" action="{% url 'newlisting' %}" method="post">
+        {% csrf_token %}
+
+        <h2 class="mb-5">Create a new Auction Listing</h2>
+        
+        <div class="mb-3">
+            <label  class="form-label" for="title"><strong>Auction Title:</strong></label>     
+            <input class="form-control" id="title" type="text" name="title" placeholder="Enter aution title" required/>
+        </div>
+
+        
+        <div class="mb-3">
+            <label class="form-label" for="quantity"><strong>Quantity:</strong></label>
+            <div class="input-group">
+                <input class="form-control" id="quantity" type="number" name="quantity" required/>
+                <span class="input-group-text">units</span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label  class="form-label" for="starting_bid"><strong>Starting bid in Naira:</strong></label>
+            <div class="input-group">
+                <span class="input-group-text">&#8358</span>
+                <input class="form-control" id="starting_bid" type="number" name="starting_bid" aria-label="Amount(to the nearest Naira)" required/>
+                
+            </div>
+            
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="description"><strong>Auction description:</strong></label>
+            <div>
+                <textarea class="form-control" id="description" type="text" name="description" placeholder="Describe the item" required ></textarea>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="category"><strong>Product Category:</strong></label>
+            <div>
+                <select class="form-control" id="category" name="category" required >
+                    <option value="">Select Product Category</option>
+                    <option value="1">Book</option>
+                    <option value="2">Vehicle</option>
+                    <option value="3">Fashion</option>
+                    <option value="4">Toys</option>
+                    <option value="5">Electronics</option>
+                    <option value="6">Home Appliances</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="listing_img"><strong>Listing's Image Url</strong>(optional):</label>
+            <div>
+                <input class="form-control" id="listing_img" type="text" name="listing_img"/>
+            </div>
+        </div>
+
+        <input class="mx-auto mt-5 btn btn-primary" type="submit" value="Create Listing"/>
+
+    </form>
+{% endblock %}

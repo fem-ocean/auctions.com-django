@@ -1,0 +1,37 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}Watchlist{% endblock %}
+{% block body %}
+    <h4>Watchlist</h4>
+    
+    {% if listings %}
+    <div class="row mx-5 ">
+
+        {% for listing in listings %}
+            	
+            <div class="card listingCard mx-3 my-3" style="width: 18rem;height: 400px;">
+                
+                <div class="imageCont">
+                    <img src="{{listing.listing_img}}" class="card-img-top picSize" alt="{{listing.title}}" />
+                    <span class="badge text-bg-danger priceTag"><span>&#x20A6;</span>{{listing.current_bid}}</span>
+                </div>
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{listing.title}}</h5>
+                    <p class="card-text">{{listing.description}}</p>
+                    <!-- <p>posted by: {{listing.user.username}}</p> -->
+                    <p>Units available: {{listing.quantity}}</p>
+                    <a href="{% url 'listing' listing.id %}" class="btn btn-primary">See details</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    {% else %}
+        <h2 class="mt-5 m-auto">Oops...You do not have any item on your watchlist at the moment.</h2>
+
+    {% endif %}
+
+
+{% endblock %} 
